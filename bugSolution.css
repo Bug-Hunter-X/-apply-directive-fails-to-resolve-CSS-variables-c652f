@@ -1,0 +1,39 @@
+There are several ways to solve this:
+
+**1. Define styles in `tailwind.config.js`:**
+
+```javascript
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        'my-custom-blue': 'blue',
+      },
+    },
+  },
+  plugins: [],
+}
+```
+
+```css
+.my-class {
+  @apply bg-my-custom-blue;
+}
+```
+
+**2. Directly use the resolved variable value:**
+
+If you cannot modify the `tailwind.config.js` file, directly use the resolved CSS variable value in your styles:
+
+```css
+:root {
+  --my-color: blue;
+}
+
+.my-class {
+  background-color: var(--my-color);
+}
+```
+
+This bypasses the `@apply` directive and ensures the correct color is applied.
